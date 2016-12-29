@@ -684,18 +684,20 @@ printf(" to play again enter 1\n\n to exit enter 2\n\n");
 }
 //function for showing the list of the players names and their scores
 void scores_list(){
+    //open the file to read from it
 FILE *list;
 list=fopen("list .txt","r+");
-int num=10;
+int num=10;//the maximum  number of the list
 int k=0;
 int i=0,j,l,flage;
-name_scores_pair_t *arr = (name_scores_pair_t *) malloc(sizeof(name_scores_pair_t) * num);
+name_scores_pair_t *arr = (name_scores_pair_t *) malloc(sizeof(name_scores_pair_t) * num);//create an array of struct
+    //read from the file until the lines end
 while(!feof(list)){
    fscanf(list,"%llu  %[^\t\n]s ",&arr[i].playerscore,&arr[i].name);
    fscanf(list,"\n");
    i++;
     }
-fclose(list);
+fclose(list);//close the file
 int z=i;
 for (j = 0; (j < i); j++){
      k=0;
@@ -716,7 +718,7 @@ for (j = 0; (j < i); j++){
    k++;
 }
 }
-sorting(num, arr);
+sorting(num, arr);//call function for sorting
 
 for (j = 0;((j < i)&&(arr[j].playerscore!=0)); j++)
 {
@@ -725,6 +727,7 @@ printf("%d-%llu \t %s \n",j+1,arr[j].playerscore,arr[j].name);
 free(arr);
  open_game(welcome_game());
 }
+//function for sorting the list
 void sorting(int n, name_scores_pair_t *array)
 {
  int i, j;
